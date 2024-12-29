@@ -1,0 +1,201 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;500;600;700;800;900&display=swap");
+:root {
+  --font-main: "Inter", sans-serif;
+  --colo-primary: #c83b0e;
+  --colo-dark-1: #000000;
+  --colo-dark-2: #7d8184;
+  --colo-white-1: #ffffff;
+  --colo-white-2: #f5f5f5;
+  --color-green: #00d656;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+html {
+  font-size: 10px;
+  /* 1 rem 10px */
+}
+body {
+  font-family: var(--font-main);
+  font-size: 1.6rem;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+.container {
+  max-width: 114rem;
+  margin: 0 auto;
+  padding: 0rem 1rem;
+}
+.w-6 {
+  width: 2rem;
+  height: 2rem;
+}
+.h-6 {
+  fill: rgb(239, 140, 1);
+}
+/* top_nav */
+.top_nav {
+  width: 100%;
+  height: 4rem;
+  background-color: var(--colo-dark-1);
+}
+.top_nav_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.top_nav_wrapper {
+  display: flex;
+  color: var(--colo-white-1);
+}
+.tap_nav_p {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+.top_nav_link {
+  margin-left: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--colo-white-1);
+}
+/* navbaar */
+.nav {
+  width: 100%;
+  height: 8rem;
+  border-bottom: 1px solid var(--colo-dark-2);
+}
+.nav_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav_list {
+  display: flex;
+}
+.nav_items {
+  display: flex;
+}
+.nav_logo {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--colo-dark-1);
+}
+.nav_item {
+  margin: 0rem 0.5rem;
+}
+.nav_link {
+  padding: 0.6rem;
+  color: var(--colo-dark-1);
+}
+.nav_form {
+  padding: 0.8rem;
+  background-color: var(--colo-white-2);
+  display: flex;
+  align-items: center;
+}
+.nav_input {
+  padding: 0.4rem;
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+.nav_search {
+  cursor: pointer;
+}
+.nav_items {
+  display: flex;
+  align-items: center;
+}
+.nav_heart {
+  margin-left: 1rem;
+  cursor: pointer;
+}
+.nav_cart {
+  margin-left: 1rem;
+  cursor: pointer;
+}
+/* shop_container */
+.shop_container {
+  display: flex;
+  justify-content: space-between; /* Space between product and cart containers */
+  align-items: flex-start; /* Align items to the top */
+  gap: 20px; /* Add a consistent gap between the two containers */
+  padding: 10px; /* Optional padding around the shop container */
+  box-sizing: border-box; /* Prevent padding from affecting layout */
+}
+
+/* product_container */
+.product_container {
+  flex: 3; /* Use flex-grow to dynamically allocate width */
+  max-width: 65%; /* Limit maximum width */
+  box-sizing: border-box;
+}
+
+/* products grid */
+.products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  gap: 20px; /* Add spacing between cards */
+}
+
+/* cart_container */
+.cart_container {
+  flex: 1; /* Use flex-grow to dynamically allocate smaller width */
+  max-width: 35%; /* Limit maximum width */
+  box-sizing: border-box;
+}
+
+/* card_image */
+.card_image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Maintain aspect ratio */
+}
+.card_top {
+  position: relative; /* Allows positioning of the button inside */
+  border-radius: 12px; /* Rounded corners */
+  /* overflow: hidden; Ensures content respects the border-radius */
+}
+.cart_btn {
+  display: flex;
+  justify-items: center;
+  gap: 10px;
+  /* justify-content: space-around; */
+  position: absolute; /* Enable positioning relative to .card_top */
+  bottom: -10px; /* Align to the bottom of .card_top */
+  left: 50%; /* Start the button at the middle */
+  margin-left: -50px; /* Adjust the button’s position to center it based on its width */
+  background-color: var(--colo-white-1);
+  color: white; /* Button text color */
+  border: none; /* Remove default button border */
+  border-radius: 8px; /* Rounded button corners */
+  padding: 8px 12px; /* Add padding for a better look */
+  font-size: 12px; /* Adjust font size for readability */
+  cursor: pointer; /* Pointer cursor on hover */
+
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for visual appeal */
+}
+
+.cart_btn p {
+  color: var(--colo-dark-1);
+  font-weight: bolder;
+}
+/* 
+.cart_btn:hover {
+  background-color: #a72e0b; 
+} */
+
+.card_notes {
+  margin-top: 30px;
+}
