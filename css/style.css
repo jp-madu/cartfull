@@ -143,7 +143,7 @@ ul {
 }
 
 /* products grid */
-.products {
+.product-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
   gap: 20px; /* Add spacing between cards */
@@ -167,35 +167,91 @@ ul {
   border-radius: 12px; /* Rounded corners */
   /* overflow: hidden; Ensures content respects the border-radius */
 }
-.cart_btn {
-  display: flex;
-  justify-items: center;
-  gap: 10px;
-  /* justify-content: space-around; */
-  position: absolute; /* Enable positioning relative to .card_top */
-  bottom: -10px; /* Align to the bottom of .card_top */
-  left: 50%; /* Start the button at the middle */
-  margin-left: -50px; /* Adjust the button’s position to center it based on its width */
-  background-color: var(--colo-white-1);
-  color: white; /* Button text color */
-  border: none; /* Remove default button border */
-  border-radius: 8px; /* Rounded button corners */
-  padding: 8px 12px; /* Add padding for a better look */
-  font-size: 12px; /* Adjust font size for readability */
-  cursor: pointer; /* Pointer cursor on hover */
-
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for visual appeal */
-}
-
-.cart_btn p {
-  color: var(--colo-dark-1);
-  font-weight: bolder;
-}
-/* 
-.cart_btn:hover {
-  background-color: #a72e0b; 
-} */
 
 .card_notes {
   margin-top: 30px;
+}
+/* Common styles for cart controls wrapper */
+.cart-controls {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Cart default button */
+.cart-default-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 2px solid #c83b0e;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  width: max-content;
+}
+
+.cart-default-btn p {
+  font-size: 12px;
+}
+
+/* Quantity controls (initially hidden) */
+.quantity-controls {
+  display: none; /* Hide by default */
+  border: 2px solid #c83b0e;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: max-content;
+}
+
+.quantity-controls button {
+  background-color: #c83b0e;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.quantity-controls button:hover {
+  background-color: #a12d0b;
+}
+
+.quantity-controls .quantity {
+  margin: 0 8px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #333333;
+}
+
+/* cart container*/
+.card-list {
+  display: flex;
+  justify-content: space-evenly;
+  justify-items: center;
+  align-items: center;
+}
+
+.cart-item-subtitles {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.cart-item-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
