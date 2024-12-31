@@ -110,6 +110,9 @@ function renderCart() {
   const cartContainer = document.querySelector(".cart-list-display");
   const emptyCartDisplay = document.querySelector(".empty_cart_display");
 
+  // // Retrieve cart from localStorage
+  // let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
   if (cart.length === 0) {
     cartContainer.innerHTML = ""; // Clear the cart display
     emptyCartDisplay.style.display = "block"; // Show empty cart message
@@ -140,6 +143,13 @@ function renderCart() {
   });
 }
 
+// function renderCheckout() {
+//  const checkoutContainer = document.querySelector(".checkout-container");
+
+//  const checkoutListDisplay =
+
+// }
+
 // Attach event listeners to product cards
 function attachProductEventListeners() {
   const addToCartButtons = document.querySelectorAll(".cart-default-btn");
@@ -154,6 +164,8 @@ function attachProductEventListeners() {
         cartItem = { ...product, quantity: 1 };
         cart.push(cartItem);
       }
+
+      // alert(`${product.name} has been added to your cart.`);
 
       renderCart();
       updateProductUI(this, cartItem.quantity);
@@ -172,6 +184,9 @@ function attachProductEventListeners() {
           this.closest(".card").querySelector(".cart-default-btn"),
           cartItem.quantity
         );
+
+        // // Save the updated cart back to localStorage
+        // localStorage.setItem("cart", JSON.stringify(cart));
       }
     });
   });
@@ -180,6 +195,8 @@ function attachProductEventListeners() {
     button.addEventListener("click", function () {
       const productId = parseInt(this.closest(".card").dataset.id);
       const cartItem = cart.find((item) => item.id === productId);
+      console.log(cartItem);
+      console.log("Number of items in the cart is:", cart.length);
 
       if (cartItem) {
         cartItem.quantity--;
@@ -188,6 +205,8 @@ function attachProductEventListeners() {
           // Remove item from cart
           cart = cart.filter((item) => item.id !== productId);
         }
+        // Save the updated cart back to localStorage
+        localStorage.setItem("cart", JSON.stringify(cart));
 
         renderCart();
         updateProductUI(
@@ -216,6 +235,8 @@ function updateProductUI(button, quantity) {
 
 // Initialize functionality
 document.addEventListener("DOMContentLoaded", () => {
+  // // Retrieve cart from localStorage
+  // cart = JSON.parse(localStorage.getItem("cart"));
   renderProducts();
   renderCart();
 });
