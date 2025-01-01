@@ -201,6 +201,29 @@ ul {
   font-size: 12px;
 }
 
+.cart-display {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+
+/* .cart-button  {
+  width: 100%;
+} */
+
+.confirm-order-button {
+  padding: 8px 80px;
+  margin-top: 10px;
+  border-radius: 8px;
+  background-color: #c83b0e;
+  color: var(--colo-white-1);
+}
+
+.remove-cart-item {
+  cursor: pointer;
+}
+
 /* Quantity controls (initially hidden) */
 .quantity-controls {
   display: none; /* Hide by default */

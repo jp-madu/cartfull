@@ -124,7 +124,7 @@ function renderCart() {
 
   cart.forEach((checkoutItem) => {
     const cartItemHTML = `
-      <div class="card-list">
+      <div class="card-list" data-id="${checkoutItem.id}">
         <img class="cart-item-image" src="${
           checkoutItem.image
         }" alt="Cart item image">
@@ -132,27 +132,82 @@ function renderCart() {
           <p class="cart-item-title">${checkoutItem.name}</p>
           <div class="cart-item-subtitles">
             <p class="cart-item-subtitle-1">${checkoutItem.quantity}x</p>
+      
             <p class="cart-item-subtitle-2">$${(
               checkoutItem.price * checkoutItem.quantity
             ).toFixed(2)}</p>
           </div>
-        </div>
+        </div>        
+         <img src="./assets/images/icon-remove-item.svg" alt="" class="remove-cart-item"  data-id="${
+           checkoutItem.id
+         }">
       </div>
     `;
+    console.log(checkoutItem.id);
     cartContainer.innerHTML += cartItemHTML;
   });
+
+  // Add event listeners to "remove item" buttons
+  attachRemoveEventListeners();
 }
 
-// function renderCheckout() {
-//  const checkoutContainer = document.querySelector(".checkout-container");
 
-//  const checkoutListDisplay =
 
+// function renderCheckoutModal() {
+//   const checkoutContainer = document.querySelector(".checkout-container");
+
+//   checkoutContainer.innerHTML = "";
+
+//   cart.forEach((checkoutModalItem) => {
+//     const checkOutListView = `
+//       <div class="card-list">
+//         <img class="cart-item-image" src="${
+//           checkoutModalItem.image
+//         }" alt="Cart item image">
+//         <div class="cart-item-details">
+//           <p class="cart-item-title">${checkoutModalItem.name}</p>
+//           <div class="cart-item-subtitles">
+//             <p class="cart-item-subtitle-1">${checkoutModalItem.quantity}x</p>
+//             <p class="cart-item-subtitle-2">$${(
+//               checkoutModalItem.price * checkoutModalItem.quantity
+//             ).toFixed(2)}</p>
+//           </div>
+//         </div>
+//       </div>
+//     `;
+//     checkoutContainer.innerHTML += checkOutListView;
+//   });
 // }
 
 // Attach event listeners to product cards
+
+
+
+// Function to attach event listeners to "remove item" buttons
+function attachRemoveEventListeners() {
+  document.querySelectorAll(".remove-cart-item").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const productId = parseInt(event.currentTarget.dataset.id); // Get the product ID
+      const cartItemIndex = cart.findIndex((item) => item.id === productId); // Find the index
+
+      if (cartItemIndex !== -1) {
+        cart.splice(cartItemIndex, 1); // Remove the item
+        localStorage.setItem("cart", JSON.stringify(cart)); // Update localStorage
+        renderCart(); // Re-render the cart UI
+        updateProductListUI(); // Update the product list UI
+        console.log(`Item with ID ${productId} removed from cart.`);
+        console.log("Updated cart:", cart);
+      } else {
+        console.log(`Item with ID ${productId} not found in cart.`);
+      }
+    });
+  });
+}
+
 function attachProductEventListeners() {
   const addToCartButtons = document.querySelectorAll(".cart-default-btn");
+
+  // const renderCheckoutModalButton = document.querySelector("");
 
   addToCartButtons.forEach((button) => {
     button.addEventListener("click", function () {
@@ -215,6 +270,49 @@ function attachProductEventListeners() {
           this.closest(".card").querySelector(".cart-default-btn"),
           cartItem.quantity
         );
+      }
+    });
+  });
+
+  // document.querySelectorAll(".remove-cart-item").forEach((button) => {
+  //   button.addEventListener("click", (event) => {
+  //     const currentId = parseInt(event.currentTarget.dataset.id);
+  //     //   const productId = parseInt(this.closest(".card-list").dataset.id);
+  //     const cartItem = cart.find((item) => item.id === currentId);
+
+  //     // console.log(cartItem);
+  //     console.log(currentId);
+  //   });
+  // });
+
+  // OR use event delegation for dynamic elements
+  // document.addEventListener("click", (event) => {
+  //   if (event.target.classList.contains("remove-cart-item")) {
+  //     const currentId = event.target.dataset.id;
+  //     const cartItem = cart.find((item) => item.id === currentId);
+
+  //     console.log(cartItem);
+  //     console.log(currentId);
+  //   }
+  // });
+
+  document.querySelectorAll(".remove-cart-item").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const productId = parseInt(event.currentTarget.dataset.id); // Get the product ID
+      const cartItemIndex = cart.findIndex((item) => item.id === productId); // Find the index
+
+      if (cartItemIndex !== -1) {
+        cart.splice(cartItemIndex, 1); // Remove the item
+        localStorage.setItem("cart", JSON.stringify(cart));
+        // renderCart();
+        // updateProductUI(
+        //   this.closest(".card").querySelector(".cart-default-btn"),
+        //   cartItem.quantity
+        // );
+        console.log(`Item with ID ${productId} removed from cart.`);
+        console.log("Updated cart:", cart);
+      } else {
+        console.log(`Item with ID ${productId} not found in cart.`);
       }
     });
   });
