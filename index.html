@@ -34,11 +34,11 @@
       <div class="nav_items">
         <form action="#" class="nav_form">
           <input type="text" class="nav_input" placeholder="search here...." />
-          <img src="./image/search.png" alt="" class="nav_search" />
+          <!-- <img src="./image/search.png" alt="" class="nav_search" /> -->
         </form>
-        <img src="./image/heart.png" alt="" class="nav_heart" />
+        <!-- <img src="./image/heart.png" alt="" class="nav_heart" /> -->
         <a href="/cart.html">
-          <img src="./image/cart.png" alt="" class="nav_cart" />
+          <!-- <img src="./image/cart.png" alt="" class="nav_cart" /> -->
         </a>
       </div>
 
@@ -68,9 +68,9 @@
       <div class="product_container">
 
         <div class="product_container_header">
-          <h3 class="container_title">
+          <h2 class="product_container_header_title">
             Desserts
-          </h3>
+          </h2>
         </div>
 
         <div class="product-list">
@@ -93,15 +93,45 @@
           </p>
         </div>
 
-        <div class="checkout-container">
+        <!-- Modal Overlay -->
+        <div class="modal-overlay" id="checkoutModal">
+          <div class="confirmation-modal">
+            <img src="./assets/images/icon-order-confirmed.svg" alt="">
+            <h1>Order Confirmed</h1>
+            <p>We hope you enjoy your food</p>
+
+            <div class="modal-content-container">
+              <div class="modal-content">
+                <div class="checkout-container"></div>
+              </div>
+              <div class="checkout-modal-total-amount"></div>
+            </div>
+
+            <button class="close-modal-btn">Start New Order</button>
+
+          </div>
 
         </div>
 
+
+
         <div class="cart-display">
+
+          <div class="cart-heading"></div>
           <div class="cart-list-display">
           </div>
 
+          <div class="cart-total-amount">
+
+          </div>
+
+          <div class="delivery-info">
+            <img src="./assets/images/icon-carbon-neutral.svg" alt="">
+            <p>This is a carbon-neutral delivery</p>
+          </div>
+
           <div class="cart-button">
+
             <button class="confirm-order-button">Confirm Order</button>
           </div>
 
