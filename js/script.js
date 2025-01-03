@@ -113,7 +113,7 @@ function updateNavCartCount() {
   if (navCartIcon) {
     navCartIcon.innerHTML = `
      <a href="#">
-          <img src="./assets/images/cart.png" alt="" class="nav_cart" />
+          <img src="./assets/images/shopping-cart.png" alt="" class="nav_cart" />
           <span class="cart-counter">${totalCartItemCount}</span> <!-- Cart counter -->
 
         </a>
@@ -121,6 +121,19 @@ function updateNavCartCount() {
         `;
   }
 }
+
+
+// function showCartPopupModal() {
+
+// }
+
+
+// // Add event listener to close button
+// document
+//   .querySelector(".nav-cart-image  .active")
+//   .addEventListener("click", showCartPopupModal);
+
+
 
 // Function to update the product list UI based on the cart state
 function updateProductListUI() {
@@ -421,11 +434,10 @@ function closeCheckoutModal() {
 
   renderCart();
   updateProductListUI();
-  // cart = [];
-  // Display the default UI
-  // renderProducts();
-  // renderCart();
+  updateNavCartCount();
+  
 }
+
 
 // Add event listener to close button
 document
@@ -442,18 +454,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCart();
   updateProductListUI();
   updateNavCartCount();
-  // updateNavCartCount();
-  // Check if the cart is empty
-  // if (cart.length > 0) {
-  //   // Update the UI to reflect the current cart state
-  //   renderCart();
-  //   updateProductListUI();
-  // } else {
-  //   updateProductListUI();
-  //   // Display the default UI
-  //   // renderProducts();
-  //   renderCart();
-  // }
+  
 });
 
 // Helper function to calculate cart total
@@ -465,7 +466,5 @@ function getCartTotal() {
 function getCartItemCount() {
   return cart.reduce((total, item) => total + item.quantity, 0);
 }
-// let totalCartItemCount = getCartItemCount();
-// let totalCartItemCost= getCartTotal();
 
 //
