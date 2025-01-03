@@ -156,6 +156,7 @@ ul {
 }
 
 .empty_cart_display {
+  border-radius: 8px;
   width: 100%;
   display: flex;
   justify-items: center;

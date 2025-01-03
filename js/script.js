@@ -389,6 +389,13 @@ function openCheckoutModal() {
 function closeCheckoutModal() {
   const modal = document.getElementById("checkoutModal");
   modal.style.display = "none"; // Hide the modal
+
+  // Clear local storage (if used)
+  localStorage.removeItem("cart");
+  cart = []; // Reset the cart to an empty array
+
+  renderCart();
+  updateProductListUI();
   // cart = [];
   // Display the default UI
   // renderProducts();
@@ -407,17 +414,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   console.log("items saved in local storage are:", cart);
   // console.log("Total cost of items in the cart:", totalItemCost);
-
+  renderCart();
+  updateProductListUI();
   // Check if the cart is empty
-  if (cart.length > 0) {
-    // Update the UI to reflect the current cart state
-    renderCart();
-    updateProductListUI();
-  } else {
-    // Display the default UI
-    renderProducts();
-    renderCart();
-  }
+  // if (cart.length > 0) {
+  //   // Update the UI to reflect the current cart state
+  //   renderCart();
+  //   updateProductListUI();
+  // } else {
+  //   updateProductListUI();
+  //   // Display the default UI
+  //   // renderProducts();
+  //   renderCart();
+  // }
 });
 
 // Helper function to calculate cart total
