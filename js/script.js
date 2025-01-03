@@ -221,10 +221,9 @@ function renderCheckoutModal() {
   const checkoutModalTotalAmount = document.querySelector(
     ".checkout-modal-total-amount"
   );
-  const checkoutModalButton = document.querySelector(".checkout-container");
+  // const checkoutModalButton = document.querySelector(".checkout-container");
 
-
-  // close - modal - btn;
+  // // close - modal - btn;
 
   checkoutContainer.innerHTML = "";
   let totalCartItemCost = getCartTotal();
@@ -390,6 +389,10 @@ function openCheckoutModal() {
 function closeCheckoutModal() {
   const modal = document.getElementById("checkoutModal");
   modal.style.display = "none"; // Hide the modal
+  // cart = [];
+  // Display the default UI
+  // renderProducts();
+  // renderCart();
 }
 
 // Add event listener to close button
