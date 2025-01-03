@@ -196,7 +196,9 @@ function renderCart() {
           <div class="cart-item-subtitles">
             <p class="cart-item-subtitle-1">${checkoutItem.quantity}x</p>
       
-            <p class="cart-item-subtitle-2">@$${checkoutItem.price}</p>
+            <p class="cart-item-subtitle-2">@$${checkoutItem.price.toFixed(
+              2
+            )}</p>
             <p class="cart-item-subtitle-2">$${(
               checkoutItem.price * checkoutItem.quantity
             ).toFixed(2)}</p>
@@ -238,7 +240,9 @@ function renderCheckoutModal() {
           <p class="cart-item-title">${checkoutModalItem.name}</p>
           <div class="cart-item-subtitles">
             <p class="cart-item-subtitle-1">${checkoutModalItem.quantity}x</p>
-            <p class="cart-item-subtitle-2">@$${checkoutModalItem.price}</p>
+            <p class="cart-item-subtitle-2">@$${checkoutModalItem.price.toFixed(
+              2
+            )}</p>
           </div>
         </div>
           <p class="cart-item-subtitle-2">$${(
