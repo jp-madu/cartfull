@@ -66,43 +66,60 @@ const products = [
 // Empty cart array to store selected products
 let cart = [];
 
-// Function to render products
-function renderProducts() {
-  const productContainer = document.querySelector(".product-list");
-  productContainer.innerHTML = ""; // Clear the product container
+// // Function to render products
+// function renderProducts() {
+//   const productContainer = document.querySelector(".product-list");
+//   productContainer.innerHTML = ""; // Clear the product container
 
-  products.forEach((product) => {
-    const productCard = `
-      <div class="card" data-id="${product.id}">
-        <div class="card_top">
-          <img src="${product.image}" alt="${
-      product.name
-    }" class="card_image" />
-          <div class="cart-controls">
-            <div class="cart-default-btn">
-              <img src="./assets/images/icon-add-to-cart.svg" alt="">
-              <p>Add to Cart</p>
-            </div>   
-            <div class="quantity-controls" style="display: none;">
-              <button class="decrease-btn">-</button>
-              <span class="quantity">1</span>
-              <button class="increase-btn">+</button>
-            </div>
-          </div>
-        </div>
-        <div class="card_notes">
-          <p class="title">${product.name}</p>
-          <p class="subtitle">${product.description}</p>
-          <p class="price">$${product.price.toFixed(2)}</p>
-        </div>
-      </div>
-    `;
+//   products.forEach((product) => {
+//     const productCard = `
+//       <div class="card" data-id="${product.id}">
+//         <div class="card_top">
+//           <img src="${product.image}" alt="${
+//       product.name
+//     }" class="card_image" />
+//           <div class="cart-controls">
+//             <div class="cart-default-btn">
+//               <img src="./assets/images/icon-add-to-cart.svg" alt="">
+//               <p>Add to Cart</p>
+//             </div>
+//             <div class="quantity-controls" style="display: none;">
+//               <button class="decrease-btn">-</button>
+//               <span class="quantity">1</span>
+//               <button class="increase-btn">+</button>
+//             </div>
+//           </div>
+//         </div>
+//         <div class="card_notes">
+//           <p class="title">${product.name}</p>
+//           <p class="subtitle">${product.description}</p>
+//           <p class="price">$${product.price.toFixed(2)}</p>
+//         </div>
+//       </div>
+//     `;
 
-    productContainer.innerHTML += productCard;
-  });
+//     productContainer.innerHTML += productCard;
+//   });
 
-  // Add event listeners after rendering products
-  attachProductEventListeners();
+//   // Add event listeners after rendering products
+//   attachProductEventListeners();
+// }
+
+function updateNavCartCount() {
+  const navCartIcon = document.querySelector(".nav-cart-image");
+
+  let totalCartItemCount = getCartItemCount();
+
+  if (navCartIcon) {
+    navCartIcon.innerHTML = `
+     <a href="#">
+          <img src="./assets/images/cart.png" alt="" class="nav_cart" />
+          <span class="cart-counter">${totalCartItemCount}</span> <!-- Cart counter -->
+
+        </a>
+        
+        `;
+  }
 }
 
 // Function to update the product list UI based on the cart state
@@ -275,6 +292,7 @@ function attachRemoveEventListeners() {
       if (cartItemIndex !== -1) {
         cart.splice(cartItemIndex, 1); // Remove the item
         localStorage.setItem("cart", JSON.stringify(cart)); // Update localStorage
+        updateNavCartCount();
         renderCart(); // Re-render the cart UI
         updateProductListUI(); // Update the product list UI
         console.log(`Item with ID ${productId} removed from cart.`);
@@ -324,6 +342,7 @@ function attachProductEventListeners() {
     if (product) {
       cart.push({ ...product, quantity: 1 }); // Add the product with a quantity of 1
       localStorage.setItem("cart", JSON.stringify(cart)); // Update localStorage
+      updateNavCartCount();
       renderCart(); // Re-render the cart UI
       updateProductListUI(); // Update the product list UI
     }
@@ -335,6 +354,7 @@ function attachProductEventListeners() {
     if (cartItem) {
       cartItem.quantity += 1; // Increase the quantity
       localStorage.setItem("cart", JSON.stringify(cart)); // Update localStorage
+      updateNavCartCount();
       renderCart(); // Re-render the cart UI
       updateProductListUI(); // Update the product list UI
     }
@@ -350,6 +370,7 @@ function attachProductEventListeners() {
         cart.splice(cart.indexOf(cartItem), 1); // Remove the item if quantity is 1
       }
       localStorage.setItem("cart", JSON.stringify(cart)); // Update localStorage
+      updateNavCartCount();
       renderCart(); // Re-render the cart UI
       updateProductListUI(); // Update the product list UI
     }
@@ -420,6 +441,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // console.log("Total cost of items in the cart:", totalItemCost);
   renderCart();
   updateProductListUI();
+  updateNavCartCount();
+  // updateNavCartCount();
   // Check if the cart is empty
   // if (cart.length > 0) {
   //   // Update the UI to reflect the current cart state
