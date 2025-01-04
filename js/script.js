@@ -282,7 +282,7 @@ function attachRemoveEventListeners() {
         if (cartLengthBeforeRemoval > 0 && cart.length > 0) {
           renderCheckoutModal(); // Render the checkout modal only if the cart is not empty
         } else {
-          closeCheckoutModal();
+          startNewOrder();
         }
 
         console.log(`Item with ID ${productId} removed from cart.`);
@@ -423,7 +423,7 @@ function openCheckoutModal() {
 }
 
 // Function to close the modal
-function closeCheckoutModal() {
+function startNewOrder() {
   const modal = document.getElementById("checkoutModal");
   modal.style.display = "none"; // Hide the modal
 
@@ -436,10 +436,20 @@ function closeCheckoutModal() {
   updateNavCartCount();
 }
 
+function closeCheckoutModal() {
+  const modal = document.getElementById("checkoutModal");
+  modal.style.display = "none"; // Hide the modal
+}
+
+// Add event listener to close button
+document
+  .querySelector(".check-modal-cancel-icon")
+  .addEventListener("click", closeCheckoutModal);
+
 // Add event listener to close button
 document
   .querySelector(".close-modal-btn")
-  .addEventListener("click", closeCheckoutModal);
+  .addEventListener("click", startNewOrder);
 
 // Initialize functionality
 document.addEventListener("DOMContentLoaded", () => {

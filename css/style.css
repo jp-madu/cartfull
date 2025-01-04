@@ -387,9 +387,11 @@ ul {
   display: flex;
   justify-items: center;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   font-size: 12px;
 }
+
+
 
 .cart-item-subtitle-1 {
   color: var(--colo-primary);
@@ -486,6 +488,7 @@ ul {
   left: 100%;
   margin-bottom: 5px;
   margin-left: 5px;
+  cursor: pointer;
   /* transform: translateX(100%); */
   /* position: fixed; */
 }
@@ -558,6 +561,9 @@ ul {
 
   .confirmation-modal {
     margin: 0px 20px;
+    /* width: 100%; */
+    max-width: 100%;
+    max-height: 80vh;
   }
 
   .nav-cart-image {
@@ -566,7 +572,7 @@ ul {
 
   .cart_container {
     width: 70%;
-    /* display: none; */
+    display: none;
   }
 }
 
