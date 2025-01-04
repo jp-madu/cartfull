@@ -243,6 +243,7 @@ function renderCheckoutModal() {
               checkoutModalItem.id
             }">
       </div>
+      
     `;
     checkoutContainer.innerHTML += checkOutListView;
   });

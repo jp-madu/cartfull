@@ -471,6 +471,24 @@ ul {
   /* font-size: 16px; */
 }
 
+.checkout-modal-top-icons {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.check-modal-cancel-icon {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  bottom: 100%; /* bottom: -10px; */
+
+  left: 100%;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  /* transform: translateX(100%); */
+  /* position: fixed; */
+}
 .close-modal-btn:hover {
   background-color: #ff6b81;
 }
