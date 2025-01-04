@@ -66,47 +66,12 @@ const products = [
 // Empty cart array to store selected products
 let cart = [];
 
-// // Function to render products
-// function renderProducts() {
-//   const productContainer = document.querySelector(".product-list");
-//   productContainer.innerHTML = ""; // Clear the product container
+let navCartIcon; // Declare navCartIcon in the global scope
 
-//   products.forEach((product) => {
-//     const productCard = `
-//       <div class="card" data-id="${product.id}">
-//         <div class="card_top">
-//           <img src="${product.image}" alt="${
-//       product.name
-//     }" class="card_image" />
-//           <div class="cart-controls">
-//             <div class="cart-default-btn">
-//               <img src="./assets/images/icon-add-to-cart.svg" alt="">
-//               <p>Add to Cart</p>
-//             </div>
-//             <div class="quantity-controls" style="display: none;">
-//               <button class="decrease-btn">-</button>
-//               <span class="quantity">1</span>
-//               <button class="increase-btn">+</button>
-//             </div>
-//           </div>
-//         </div>
-//         <div class="card_notes">
-//           <p class="title">${product.name}</p>
-//           <p class="subtitle">${product.description}</p>
-//           <p class="price">$${product.price.toFixed(2)}</p>
-//         </div>
-//       </div>
-//     `;
 
-//     productContainer.innerHTML += productCard;
-//   });
-
-//   // Add event listeners after rendering products
-//   attachProductEventListeners();
-// }
 
 function updateNavCartCount() {
-  const navCartIcon = document.querySelector(".nav-cart-image");
+  navCartIcon = document.querySelector(".nav-cart-image");
 
   let totalCartItemCount = getCartItemCount();
 
