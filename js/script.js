@@ -68,8 +68,6 @@ let cart = [];
 
 let navCartIcon; // Declare navCartIcon in the global scope
 
-
-
 function updateNavCartCount() {
   navCartIcon = document.querySelector(".nav-cart-image");
 
@@ -87,18 +85,14 @@ function updateNavCartCount() {
   }
 }
 
-
 // function showCartPopupModal() {
 
 // }
-
 
 // // Add event listener to close button
 // document
 //   .querySelector(".nav-cart-image  .active")
 //   .addEventListener("click", showCartPopupModal);
-
-
 
 // Function to update the product list UI based on the cart state
 function updateProductListUI() {
@@ -206,7 +200,6 @@ function renderCart() {
     `;
     console.log(checkoutItem.id);
     cartContainer.innerHTML += cartItemHTML;
-    // cartTotalAmount.innerHTML = `<p>$${totalItemCost.toFixed(2)}</p>`;
   });
 
   // Add event listeners to "remove item" buttons
@@ -218,9 +211,7 @@ function renderCheckoutModal() {
   const checkoutModalTotalAmount = document.querySelector(
     ".checkout-modal-total-amount"
   );
-  // const checkoutModalButton = document.querySelector(".checkout-container");
 
-  // // close - modal - btn;
 
   checkoutContainer.innerHTML = "";
   let totalCartItemCost = getCartTotal();
@@ -238,11 +229,15 @@ function renderCheckoutModal() {
             <p class="cart-item-subtitle-2">@$${checkoutModalItem.price.toFixed(
               2
             )}</p>
+             <p class="cart-item-subtitle-2">$${(
+               checkoutModalItem.price * checkoutModalItem.quantity
+             ).toFixed(2)}</p>
           </div>
         </div>
-          <p class="cart-item-subtitle-2">$${(
-            checkoutModalItem.price * checkoutModalItem.quantity
-          ).toFixed(2)}</p>
+         
+            <img src="./assets/images/icon-remove-item.svg" alt="" class="remove-cart-item"  data-id="${
+              checkoutModalItem.id
+            }">
       </div>
     `;
     checkoutContainer.innerHTML += checkOutListView;
@@ -256,6 +251,9 @@ function renderCheckoutModal() {
   } else {
     console.error("Element with class 'cart-total-amount' not found.");
   }
+
+  // Add event listeners to "remove item" buttons
+  attachRemoveEventListeners();
 }
 
 // Attach event listeners to product cards
@@ -268,16 +266,42 @@ function attachRemoveEventListeners() {
       const cartItemIndex = cart.findIndex((item) => item.id === productId); // Find the index
 
       if (cartItemIndex !== -1) {
+        const cartLengthBeforeRemoval = cart.length; // Store the cart length before removal
         cart.splice(cartItemIndex, 1); // Remove the item
         localStorage.setItem("cart", JSON.stringify(cart)); // Update localStorage
         updateNavCartCount();
         renderCart(); // Re-render the cart UI
         updateProductListUI(); // Update the product list UI
+
+        // Check if the cart length was greater than zero before removal and is still greater than zero after removal
+        if (cartLengthBeforeRemoval > 0 && cart.length > 0) {
+          renderCheckoutModal(); // Render the checkout modal only if the cart is not empty
+        } else {
+          closeCheckoutModal();
+        }
+
         console.log(`Item with ID ${productId} removed from cart.`);
         console.log("Updated cart:", cart);
       } else {
         console.log(`Item with ID ${productId} not found in cart.`);
       }
+
+      // if (cartItemIndex !== -1) {
+      //   cart.splice(cartItemIndex, 1); // Remove the item
+      //   localStorage.setItem("cart", JSON.stringify(cart)); // Update localStorage
+      //   updateNavCartCount();
+      //   renderCart(); // Re-render the cart UI
+      //   updateProductListUI(); // Update the product list UI
+
+      //   if (cart.length > 0) {
+      //      renderCheckoutModal();
+      //   }
+
+      //   console.log(`Item with ID ${productId} removed from cart.`);
+      //   console.log("Updated cart:", cart);
+      // } else {
+      //   console.log(`Item with ID ${productId} not found in cart.`);
+      // }
     });
   });
 }
@@ -381,6 +405,11 @@ document
   .querySelector(".confirm-order-button")
   .addEventListener("click", openCheckoutModal);
 
+  
+document
+  .querySelector(".confirm-order-button")
+  .addEventListener("click", openCheckoutModal);
+
 // Function to open the modal
 function openCheckoutModal() {
   const modal = document.getElementById("checkoutModal");
@@ -400,9 +429,7 @@ function closeCheckoutModal() {
   renderCart();
   updateProductListUI();
   updateNavCartCount();
-  
 }
-
 
 // Add event listener to close button
 document
@@ -419,7 +446,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCart();
   updateProductListUI();
   updateNavCartCount();
-  
 });
 
 // Helper function to calculate cart total
