@@ -75,13 +75,18 @@ function updateNavCartCount() {
 
   if (navCartIcon) {
     navCartIcon.innerHTML = `
-     <a href="#">
+     <div>
           <img src="./assets/images/shopping-cart.png" alt="" class="nav_cart" />
           <span class="cart-counter">${totalCartItemCount}</span> <!-- Cart counter -->
 
-        </a>
-        
+        </div>
+
         `;
+    if (window.innerWidth <= 660 && cart.length > 0) {
+      navCartIcon.addEventListener("click", openCheckoutModal);
+    } else {
+      navCartIcon.removeEventListener("click", openCheckoutModal);
+    }
   }
 }
 
@@ -211,7 +216,6 @@ function renderCheckoutModal() {
   const checkoutModalTotalAmount = document.querySelector(
     ".checkout-modal-total-amount"
   );
-
 
   checkoutContainer.innerHTML = "";
   let totalCartItemCost = getCartTotal();
@@ -405,7 +409,6 @@ document
   .querySelector(".confirm-order-button")
   .addEventListener("click", openCheckoutModal);
 
-  
 document
   .querySelector(".confirm-order-button")
   .addEventListener("click", openCheckoutModal);
@@ -415,6 +418,7 @@ function openCheckoutModal() {
   const modal = document.getElementById("checkoutModal");
   modal.style.display = "flex"; // Show the modal
   renderCheckoutModal(); // Render the checkout items
+  console.log("check out modal popup active");
 }
 
 // Function to close the modal
