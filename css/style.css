@@ -436,11 +436,13 @@ ul {
 
 .confirmation-modal {
   background-color: #fff;
-  padding: 20px;
+  padding: 16px 8px;
   border-radius: 10px;
   /* width: 100%; */
   max-width: 400px;
-  max-height: 90vh;
+  height: auto;
+  max-height: 80vh;
+  box-sizing: border-box; /* Ensure padding is included in the width/height */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -451,10 +453,10 @@ ul {
 }
 
 .confirmation-modal p {
-  padding: 8px 0px;
+  padding: 4px 0px;
 }
 .confirmation-modal h1 {
-  padding: 8px 0px;
+  /* margin: 4px auto; */
 }
 
 .modal-content {
@@ -473,14 +475,15 @@ ul {
 /* Close Button */
 .close-modal-btn {
   display: block;
-  margin: 20px auto 0;
-  padding: 10px 50px;
+  /* margin: 10px 16; */
+  padding: 10px 0px;
   background-color: var(--colo-primary);
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
+  width: 100%;
   /* font-size: 16px; */
 }
 
@@ -497,8 +500,8 @@ ul {
   bottom: 100%; /* bottom: -10px; */
 
   left: 100%;
-  margin-bottom: 5px;
-  margin-left: 5px;
+  /* margin-bottom: 5px; */
+  /* margin-left: 0px; */
   cursor: pointer;
   /* transform: translateX(100%); */
   /* position: fixed; */
@@ -524,11 +527,11 @@ ul {
   border-bottom: 1px solid var(--colo-white-2);
 
   /* padding-top: 16px; */
-  margin-bottom: 8px;
+  /* margin-bottom: 8px; */
 }
 
 .checkout-modal-total-amount {
-  margin-top: 8px;
+  /* margin-top: 8px; */
   display: flex;
   justify-content: space-between;
 }
